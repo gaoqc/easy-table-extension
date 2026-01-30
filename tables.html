@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>esay table  Test Page</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            padding: 20px;
+            background-color: #f8fafc;
+            color: #334155;
+        }
+        h1 {
+            text-align: center;
+            color: #1e293b;
+            margin-bottom: 40px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .table-wrapper {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            padding: 20px;
+            margin-bottom: 40px;
+            overflow-x: auto;
+        }
+        .table-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #0f172a;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        th {
+            background-color: #f1f5f9;
+            font-weight: 600;
+            color: #475569;
+            white-space: nowrap;
+        }
+        tr:hover {
+            background-color: #f8fafc;
+        }
+        /* Random styling for variety */
+        .theme-blue th { background-color: #eff6ff; color: #1e40af; }
+        .theme-green th { background-color: #f0fdf4; color: #166534; }
+        .theme-purple th { background-color: #faf5ff; color: #6b21a8; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Easy Table Test Data</h1>
+        <div id="tables-container"></div>
+    </div>
+
+    <script>
+        // Data pools
+        const firstNames = ["James", "Mary", "John", "Patricia", "Robert", "Jennifer", "Michael", "Linda", "William", "Elizabeth", "David", "Barbara", "Richard", "Susan", "Joseph", "Jessica", "Thomas", "Sarah", "Charles", "Karen"];
+        const lastNames = ["Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis", "Rodriguez", "Martinez", "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson", "Thomas", "Taylor", "Moore", "Jackson", "Martin"];
+        const cities = ["New York", "Los Angeles", "Chicago", "Houston", "Phoenix", "Philadelphia", "San Antonio", "San Diego", "Dallas", "San Jose", "Austin", "Jacksonville", "Fort Worth", "Columbus", "San Francisco", "Charlotte", "Indianapolis", "Seattle", "Denver", "Washington"];
+        const departments = ["Sales", "Engineering", "Marketing", "HR", "Finance", "Legal", "Operations", "Product", "Support", "R&D"];
+        const positions = ["Manager", "Director", "Associate", "Analyst", "Engineer", "Specialist", "Coordinator", "VP", "Lead", "Intern"];
+        const companies = ["TechCorp", "GlobalSolutions", "InnovateInc", "FutureSystems", "DataDynamics", "CloudNine", "SmartSoft", "WebWorks", "NetConnect", "AlphaGroup"];
+        const statuses = ["Active", "Inactive", "Pending", "On Leave", "Terminated", "Contract"];
+        const products = ["Widget A", "Gadget B", "Tool C", "Device D", "System E", "Module F", "Unit G"];
+
+        // Helper to get random integer
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        // Helper to get random array element
+        function getRandomItem(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
+        }
+
+        // Helper to generate random date
+        function getRandomDate() {
+            const start = new Date(2020, 0, 1);
+            const end = new Date();
+            const date = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+            return date.toISOString().split('T')[0];
+        }
+
+        // Helper to generate random currency
+        function getRandomCurrency() {
+            return "$" + (Math.random() * 10000).toFixed(2);
+        }
+
+        // Column definitions
+        const columnTypes = [
+            { name: "ID", generator: () => Math.floor(Math.random() * 100000) },
+            { name: "First Name", generator: () => getRandomItem(firstNames) },
+            { name: "Last Name", generator: () => getRandomItem(lastNames) },
+            { name: "Email", generator: () => `${getRandomItem(firstNames).toLowerCase()}.${getRandomItem(lastNames).toLowerCase()}@example.com` },
+            { name: "Department", generator: () => getRandomItem(departments) },
+            { name: "Position", generator: () => getRandomItem(positions) },
+            { name: "City", generator: () => getRandomItem(cities) },
+            { name: "Start Date", generator: () => getRandomDate() },
+            { name: "Salary", generator: () => getRandomCurrency() },
+            { name: "Status", generator: () => getRandomItem(statuses) },
+            { name: "Company", generator: () => getRandomItem(companies) },
+            { name: "Product", generator: () => getRandomItem(products) },
+            { name: "Rating", generator: () => (Math.random() * 5).toFixed(1) },
+            { name: "Age", generator: () => getRandomInt(22, 65) },
+            { name: "Address", generator: () => getRandomInt(1, 999) + " " + getRandomItem(cities) + " St" },
+            { name: "Phone", generator: () => `555-${getRandomInt(100, 999)}-${getRandomInt(1000, 9999)}` },
+            { name: "Zip Code", generator: () => getRandomInt(10000, 99999) },
+            { name: "Country", generator: () => "USA" },
+            { name: "Notes", generator: () => "N/A" },
+            { name: "Level", generator: () => getRandomInt(1, 5) }
+        ];
+
+        function generateTable(index) {
+            const container = document.getElementById('tables-container');
+            const wrapper = document.createElement('div');
+            wrapper.className = 'table-wrapper';
+            
+            // Randomly select columns (10-20)
+            const numCols = getRandomInt(10, 20);
+            // Shuffle and slice column types to get random set of columns
+            // Since we might need up to 20 columns, and we have exactly 20 columnTypes now.
+            const shuffledCols = [...columnTypes].sort(() => 0.5 - Math.random());
+            // If numCols > shuffledCols.length, we might need to duplicate or just take what we have.
+            // But I added enough columns.
+            const selectedCols = shuffledCols.slice(0, numCols);
+            
+            // Random rows (20-100)
+            const numRows = getRandomInt(20, 100);
+
+            const title = document.createElement('div');
+            title.className = 'table-title';
+            title.textContent = `Table ${index + 1}: Employee Data Report (${numRows} rows, ${numCols} columns)`;
+            wrapper.appendChild(title);
+
+            const table = document.createElement('table');
+            const themes = ['', 'theme-blue', 'theme-green', 'theme-purple'];
+            table.className = getRandomItem(themes);
+
+            // Header
+            const thead = document.createElement('thead');
+            const headerRow = document.createElement('tr');
+            selectedCols.forEach(col => {
+                const th = document.createElement('th');
+                th.textContent = col.name;
+                headerRow.appendChild(th);
+            });
+            thead.appendChild(headerRow);
+            table.appendChild(thead);
+
+            // Body
+            const tbody = document.createElement('tbody');
+            for (let i = 0; i < numRows; i++) {
+                const tr = document.createElement('tr');
+                selectedCols.forEach(col => {
+                    const td = document.createElement('td');
+                    td.textContent = col.generator();
+                    tr.appendChild(td);
+                });
+                tbody.appendChild(tr);
+            }
+            table.appendChild(tbody);
+
+            wrapper.appendChild(table);
+            container.appendChild(wrapper);
+        }
+
+        // Generate 8 tables
+        for (let i = 0; i < 8; i++) {
+            generateTable(i);
+        }
+    </script>
+</body>
+</html>
