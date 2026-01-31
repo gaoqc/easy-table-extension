@@ -1,11 +1,10 @@
-# Easy Table: Smart Web Data Extractor  <img src="./images/icon.svg" className="w-7 h-7 object-contain" />
+# Easy Table: Smart Web Data Extractor
 
-[![Chrome Web Store](https://chromewebstore.google.com/detail/table-flow-ai/flcedioalfgopopllgbheaejnpibfiam)]
-[![Privacy Focused](https://gaoqc.github.io/easy-table-extension/privacy.html)]
-[![Version](https://github.com/gaoqc/easy-table-extension/tags)]
+[![Chrome Web Store](https://img.shields.io/badge/Chrome-Web%20Store-blue?style=for-the-badge&logo=google-chrome)](https://chromewebstore.google.com/detail/table-flow-ai/flcedioalfgopopllgbheaejnpibfiam)
+[![Privacy Focused](https://img.shields.io/badge/Privacy-Focused-green?style=for-the-badge)](https://gaoqc.github.io/easy-table-extension/privacy.html)
+[![Version](https://img.shields.io/badge/Version-1.1.0-orange?style=for-the-badge)](https://github.com/gaoqc/easy-table-extension/tags)
 
 **Easy Table** is a professional browser extension designed to detect, preview, and export HTML tables from any website with precision and ease. Stop manual copy-pasting—turn web data into structured files in seconds.
-
 ---
 
 ## 🚀 What's New in v1.1.0 (Rebranded)
