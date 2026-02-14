@@ -17,7 +17,10 @@ We’ve evolved! Formerly known as *Table Flow AI*, we are now **Easy Table**. T
 * **📤 Pro Export Options**: Export to **Excel (XLSX)**, **CSV**, or high-quality **PDF** and **Images (PNG)**.
 * **📋 Developer Tools**: Copy tables as **Markdown** or **JSON** directly to your clipboard.
 * **🛠 UI Enhancements**: Support for **Table Renaming** and **Resizable Popup** for a better workspace.
-
+### 🚀 Latest Features (v1.2.0)
+* **Import Data**: Not just for extraction! Import your own `CSV`, `Excel`, or `Clipboard` data to use our styling suite.
+* **Fixes**: Optimized PDF header rendering and fixed PNG encoding bugs.
+* **Better UI**: Intelligent table naming and redesigned help documentation.
 ---
 
 ## 🎬 See It In Action
