@@ -17,55 +17,64 @@
         
         <header class="border-b border-slate-100 pb-8 mb-8">
             <h1 class="text-3xl font-bold text-slate-900">Privacy Policy</h1>
-            <p class="text-slate-500 mt-2">Last Updated: January 31, 2026</p>
+            <p class="text-slate-500 mt-2">Last Updated: February 14, 2026</p>
         </header>
 
         <section class="space-y-8">
             <div>
                 <h2 class="text-xl font-semibold text-slate-900 mb-3">1. Introduction</h2>
                 <p class="leading-relaxed text-slate-600">
-                    Welcome to <strong>Easy Table: Smart Web Data Extractor</strong>. We value your privacy and are committed to protecting your personal data. This policy explains how our browser extension operates and why you can trust us.
+                    Welcome to <strong>Easy Table: Smart Web Data Extractor</strong>. We value your privacy and are committed to protecting your personal data. This policy explains how our browser extension operates in the v1.2.x series.
                 </p>
             </div>
 
             <div class="bg-blue-50 p-6 rounded-lg border border-blue-100">
-                <h2 class="text-xl font-semibold text-blue-900 mb-3">2. Zero Data Collection Policy</h2>
+                <h2 class="text-xl font-semibold text-blue-900 mb-3">2. Zero Data Collection Policy (Local-First)</h2>
                 <p class="leading-relaxed text-blue-800 font-medium">
-                    Easy Table is a "Local-First" application. 
+                    Easy Table remains a "Local-First" application.
                 </p>
                 <ul class="list-disc list-inside mt-3 space-y-2 text-blue-800">
-                    <li><strong>No Data Uploads:</strong> All table extraction and conversion happen entirely within your browser. We never transmit your table content to our servers.</li>
-                    <li><strong>No Personal Identification:</strong> We do not collect your name, email, IP address, or browsing history.</li>
-                    <li><strong>No Account Required:</strong> No login or registration is needed to use all features.</li>
+                    <li><strong>No Background Monitoring:</strong> We do not track your browsing history or monitor your keyboard.</li>
+                    <li><strong>Local Processing:</strong> Core features like extraction, editing, and styling happen entirely inside your browser.</li>
+                    <li><strong>No Mandatory Accounts:</strong> No login is required for basic features.</li>
                 </ul>
             </div>
 
             <div>
                 <h2 class="text-xl font-semibold text-slate-900 mb-3">3. Use of Permissions</h2>
+                <p class="text-slate-600 mb-4 text-sm">We only request permissions essential for table extraction and editing:</p>
                 <ul class="space-y-4">
                     <li class="flex gap-3">
+                        <span class="font-mono bg-slate-100 px-2 py-0.5 rounded text-sm h-fit">clipboardRead</span>
+                        <span class="text-slate-600 text-sm">Accessed only when you manually click "Import from Clipboard" to load Markdown/JSON data.</span>
+                    </li>
+                    <li class="flex gap-3">
                         <span class="font-mono bg-slate-100 px-2 py-0.5 rounded text-sm h-fit">activeTab</span>
-                        <span class="text-slate-600 text-sm">Used to detect and highlight tables on the page only when the user interacts with the extension.</span>
+                        <span class="text-slate-600 text-sm">Used to detect and highlight tables on the active page during user interaction.</span>
                     </li>
                     <li class="flex gap-3">
                         <span class="font-mono bg-slate-100 px-2 py-0.5 rounded text-sm h-fit">storage</span>
-                        <span class="text-slate-600 text-sm">Used to securely save your extraction history and preference settings locally in your browser.</span>
+                        <span class="text-slate-600 text-sm">Used to save your styled table data, preference settings, and extraction history locally.</span>
                     </li>
                     <li class="flex gap-3">
-                        <span class="font-mono bg-slate-100 px-2 py-0.5 rounded text-sm h-fit">scripting</span>
-                        <span class="text-slate-600 text-sm">Used to inject the extraction logic and the "Smart Hover" effect into the current webpage.</span>
+                        <span class="font-mono bg-slate-100 px-2 py-0.5 rounded text-sm h-fit">identity</span>
+                        <span class="text-slate-600 text-sm">Used for optional Google Sheets synchronization via OAuth2 (only if triggered by user).</span>
                     </li>
                 </ul>
             </div>
 
-            <div>
-                <h2 class="text-xl font-semibold text-slate-900 mb-3">4. Data Retention</h2>
-                <p class="leading-relaxed text-slate-600">
-                    Since all data is stored locally, uninstalling the extension or clearing your browser cache will permanently delete all saved history.
+            <div class="border-l-4 border-amber-400 pl-4 py-2">
+                <h2 class="text-xl font-semibold text-slate-900 mb-3">4. Optional Third-Party Sharing</h2>
+                <p class="leading-relaxed text-slate-600 text-sm">
+                    Data only leaves your device when you explicitly use sharing features:
                 </p>
+                <ul class="list-disc list-inside mt-2 text-slate-600 text-sm space-y-1">
+                    <li><strong>Google Sheets:</strong> Data is sent to Google's servers only when you choose to sync.</li>
+                    <li><strong>Public Sharing:</strong> Encrypted data is temporarily stored on our secure cloud if you generate a "Public Share Link".</li>
+                </ul>
             </div>
 
-            <div class="border-t border-slate-100 pt-8">
+            <div>
                 <h2 class="text-xl font-semibold text-slate-900 mb-3">5. Contact & Support</h2>
                 <div class="mt-4 space-y-3">
                     <p class="flex items-center gap-2">
