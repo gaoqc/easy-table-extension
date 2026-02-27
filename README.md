@@ -40,7 +40,7 @@ We believe your data belongs to you. Easy Table operates under a strict **Zero D
 ---
 
 ## 🛠 Installation & Usage
-1.  Install the extension from the [Chrome Web Store](你的商店链接).
+1.  Install the extension from the [Chrome Web Store](https://chromewebstore.google.com/detail/table-flow-ai/flcedioalfgopopllgbheaejnpibfiam).
 2.  Navigate to any page with tables.
 3.  Click the **Easy Table** icon in your toolbar.
 4.  Hover to locate, rename if needed, and export!
