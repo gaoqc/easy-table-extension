@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>esay table  Test Page</title>
+    <title>Easy Table Test Page</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -26,7 +26,6 @@
             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
             padding: 20px;
             margin-bottom: 40px;
-            overflow-x: auto;
         }
         .table-title {
             font-size: 1.25rem;
@@ -50,24 +49,45 @@
         .table-wrapper.collapsed .table-title::after {
             transform: rotate(-90deg);
         }
+        .table-scroll-controls {
+            position: sticky;
+            top: 0;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 10px;
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 6px;
+            color: #1e40af;
+            font-size: 0.8rem;
+        }
+        .table-scroll-controls[hidden],
+        .table-wrapper.collapsed .table-scroll-controls { display: none; }
+        .table-scroll-controls button {
+            border: 1px solid #93c5fd;
+            border-radius: 4px;
+            padding: 5px 10px;
+            background: white;
+            color: #1e40af;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .table-scroll-controls button:disabled { opacity: 0.45; cursor: default; }
+        .table-scroll-track { flex: 1; min-width: 40px; overflow-x: auto; }
+        .table-scroll-track-inner { height: 1px; }
+        .table-scroll-label { white-space: nowrap; }
+        @media (max-width: 600px) { .table-scroll-label { display: none; } }
         .table-content {
-            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
-            max-height: 2000px; /* Arbitrary large height */
-            opacity: 1;
-            overflow: hidden;
+            overflow-x: auto;
         }
         .table-wrapper.collapsed .table-content {
-            max-height: 0;
-            opacity: 0;
-            margin-bottom: 0;
-        }
-        /* When collapsed, we might want to hide the scrollbar of table-wrapper if it appears */
-        .table-wrapper.collapsed {
-            overflow: hidden;
-            padding-bottom: 0; 
+            display: none;
         }
         table {
             width: 100%;
+            min-width: max-content;
             border-collapse: collapse;
             font-size: 0.875rem;
         }
@@ -100,16 +120,17 @@
             </a>
         </div>
         <h1>Easy Table Test Data</h1>
+        <p style="text-align: center; color: #64748b; margin-bottom: 30px;">Expand a table to see all rows. Scroll horizontally to view all columns.</p>
         
         <!-- Control Panel -->
         <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-bottom: 30px; display: flex; gap: 20px; align-items: end; flex-wrap: wrap;">
             <div>
                 <label style="display: block; font-weight: 600; margin-bottom: 8px; font-size: 0.9rem;">Rows</label>
-                <input type="number" id="custom-rows" value="10" min="1" style="padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 6px; width: 100px;">
+                <input type="number" id="custom-rows" value="10" min="1" max="1000" step="1" required style="padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 6px; width: 100px;">
             </div>
             <div>
-                <label style="display: block; font-weight: 600; margin-bottom: 8px; font-size: 0.9rem;">Columns</label>
-                <input type="number" id="custom-cols" value="5" min="1" max="20" style="padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 6px; width: 100px;">
+                <label style="display: block; font-weight: 600; margin-bottom: 8px; font-size: 0.9rem;">Columns (including No.)</label>
+                <input type="number" id="custom-cols" value="5" min="1" max="50" step="1" required style="padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 6px; width: 100px;">
             </div>
             <button onclick="generateCustomTable()" style="background-color: #3b82f6; color: white; border: none; padding: 9px 20px; border-radius: 6px; font-weight: 600; cursor: pointer; transition: background-color 0.2s;">
                 Generate Custom Table
@@ -184,41 +205,54 @@
             // User requirement: "Default is collapsed"
             wrapper.className = 'table-wrapper collapsed'; 
             
-            // Randomly select columns (10-20) or use customCols
-            let numCols;
-            if (customCols) {
-                numCols = Math.min(Math.max(parseInt(customCols), 1), 20); // Clamp between 1 and 20
-                // If it is custom table, let's auto-expand it so user sees result immediately
-                wrapper.className = 'table-wrapper';
-            } else {
-                numCols = getRandomInt(10, 20);
-            }
+            // The requested column count includes the first numbering column.
+            const isCustom = customRows !== null && customCols !== null;
+            const numCols = isCustom ? Number(customCols) : getRandomInt(10, 20);
+            const numRows = isCustom ? Number(customRows) : getRandomInt(20, 100);
+            if (isCustom) wrapper.className = 'table-wrapper';
 
-            // Shuffle and slice column types to get random set of columns
-            // Since we might need up to 20 columns, and we have exactly 20 columnTypes now.
             const shuffledCols = [...columnTypes].sort(() => 0.5 - Math.random());
-            // If numCols > shuffledCols.length, we might need to duplicate or just take what we have.
-            // But I added enough columns.
-            const selectedCols = shuffledCols.slice(0, numCols);
-            
-            // Random rows (20-100) or use customRows
-            let numRows;
-            if (customRows) {
-                numRows = Math.max(parseInt(customRows), 1);
-            } else {
-                numRows = getRandomInt(20, 100);
-            }
+            const selectedCols = Array.from({ length: numCols - 1 }, (_, i) => {
+                const column = shuffledCols[i % shuffledCols.length];
+                const occurrence = Math.floor(i / shuffledCols.length) + 1;
+                return { ...column, name: occurrence === 1 ? column.name : `${column.name} ${occurrence}` };
+            });
 
             const title = document.createElement('div');
             title.className = 'table-title';
             title.textContent = `Table ${index}: Employee Data Report (${numRows} rows, ${numCols} columns)`;
             title.onclick = () => {
                 wrapper.classList.toggle('collapsed');
+                if (!wrapper.classList.contains('collapsed')) requestAnimationFrame(updateScrollControls);
             };
             wrapper.appendChild(title);
 
             const content = document.createElement('div');
             content.className = 'table-content';
+            content.tabIndex = 0;
+            content.setAttribute('aria-label', `Table ${index} data; scroll horizontally to see all columns`);
+
+            const controls = document.createElement('div');
+            controls.className = 'table-scroll-controls';
+            controls.hidden = true;
+            controls.innerHTML = '<button type="button" aria-label="Scroll table left">&#8592; Left</button><span class="table-scroll-label">More columns</span><div class="table-scroll-track" tabindex="0" role="region" aria-label="Horizontal table scrollbar"><div class="table-scroll-track-inner"></div></div><button type="button" aria-label="Scroll table right">Right &#8594;</button>';
+            const [leftButton, rightButton] = controls.querySelectorAll('button');
+            const track = controls.querySelector('.table-scroll-track');
+            const trackInner = controls.querySelector('.table-scroll-track-inner');
+            const updateScrollControls = () => {
+                const maxScroll = content.scrollWidth - content.clientWidth;
+                controls.hidden = maxScroll <= 1;
+                if (controls.hidden) return;
+                trackInner.style.width = `${track.clientWidth + maxScroll}px`;
+                track.scrollLeft = content.scrollLeft;
+                leftButton.disabled = content.scrollLeft <= 1;
+                rightButton.disabled = content.scrollLeft >= maxScroll - 1;
+            };
+            leftButton.addEventListener('click', () => content.scrollBy({ left: -content.clientWidth * 0.75 }));
+            rightButton.addEventListener('click', () => content.scrollBy({ left: content.clientWidth * 0.75 }));
+            track.addEventListener('scroll', () => { content.scrollLeft = track.scrollLeft; });
+            content.addEventListener('scroll', updateScrollControls);
+            wrapper.appendChild(controls);
 
             const table = document.createElement('table');
             const themes = ['', 'theme-blue', 'theme-green', 'theme-purple'];
@@ -227,6 +261,9 @@
             // Header
             const thead = document.createElement('thead');
             const headerRow = document.createElement('tr');
+            const numberHeader = document.createElement('th');
+            numberHeader.textContent = 'No.';
+            headerRow.appendChild(numberHeader);
             selectedCols.forEach(col => {
                 const th = document.createElement('th');
                 th.textContent = col.name;
@@ -239,6 +276,9 @@
             const tbody = document.createElement('tbody');
             for (let i = 0; i < numRows; i++) {
                 const tr = document.createElement('tr');
+                const numberCell = document.createElement('td');
+                numberCell.textContent = i + 1;
+                tr.appendChild(numberCell);
                 selectedCols.forEach(col => {
                     const td = document.createElement('td');
                     td.textContent = col.generator();
@@ -250,6 +290,9 @@
 
             content.appendChild(table);
             wrapper.appendChild(content);
+            const resizeObserver = new ResizeObserver(updateScrollControls);
+            resizeObserver.observe(content);
+            resizeObserver.observe(table);
             
             // Insert at the beginning if it's a custom table (indicated by high index or custom logic), 
             // but for initial load we append. 
@@ -264,10 +307,10 @@
         }
         
         function generateCustomTable() {
-            const rows = document.getElementById('custom-rows').value;
-            const cols = document.getElementById('custom-cols').value;
-            // Use a special index or just "Custom"
-            generateTable("Custom", rows, cols);
+            const rows = document.getElementById('custom-rows');
+            const cols = document.getElementById('custom-cols');
+            if (!rows.reportValidity() || !cols.reportValidity()) return;
+            generateTable("Custom", rows.value, cols.value);
         }
 
         // Generate 8 tables
