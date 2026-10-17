@@ -1,57 +1,33 @@
 # Easy Table: Smart Web Data Extractor
 
-[![Chrome Web Store](https://img.shields.io/badge/Chrome-Web%20Store-blue?style=for-the-badge&logo=google-chrome)](https://chromewebstore.google.com/detail/table-flow-ai/flcedioalfgopopllgbheaejnpibfiam)
-[![Privacy Focused](https://img.shields.io/badge/Privacy-Focused-green?style=for-the-badge)](https://gaoqc.github.io/easy-table-extension/privacy.html)
-[![Version](https://img.shields.io/badge/Version-1.1.0-orange?style=for-the-badge)](https://github.com/gaoqc/easy-table-extension/tags)
+[Install from the Chrome Web Store](https://chromewebstore.google.com/detail/table-flow-ai/flcedioalfgopopllgbheaejnpibfiam) · [Privacy policy](https://gaoqc.github.io/easy-table-extension/privacy.html) · [Report an issue](https://github.com/gaoqc/easy-table-extension/issues)
 
-**Easy Table** is a professional browser extension designed to detect, preview, and export HTML tables from any website with precision and ease. Stop manual copy-pasting—turn web data into structured files in seconds.
----
+Easy Table 2.0 helps you extract, edit, compare, combine, and export table data in your browser.
 
-## 🚀 What's New in v1.1.0 (Rebranded)
+## Basic features
 
-We’ve evolved! Formerly known as *Table Flow AI*, we are now **Easy Table**. This version focuses on making data extraction "Smarter".
+- **Extract and import:** Detect and preview web tables, or import CSV, Excel, and clipboard data.
+- **Export in multiple formats:** Download tables as Excel, CSV, PDF, or PNG, including batch exports.
+- **Copy and paste:** Copy tables as plain text, Markdown, or JSON, and import supported clipboard data.
+- **Edit and clean:** Edit cells, remove rows or columns, sort data, and rename columns.
+- **Quick access:** Use the floating toolbar and pin tables to Home.
 
-### ✨ Key Features
-* **🎯 Smart Hover & Auto-Locate**: Visual table detection. Hover over a table in the extension list, and it instantly highlights the target on the webpage.
-* **🔍 Instant Preview**: Verify data accuracy with our new preview interface before hitting the export button.
-* **📤 Pro Export Options**: Export to **Excel (XLSX)**, **CSV**, or high-quality **PDF** and **Images (PNG)**.
-* **📋 Developer Tools**: Copy tables as **Markdown** or **JSON** directly to your clipboard.
-* **🛠 UI Enhancements**: Support for **Table Renaming** and **Resizable Popup** for a better workspace.
-### 🚀 Latest Features (v1.2.0)
-* **Import Data**: Not just for extraction! Import your own `CSV`, `Excel`, or `Clipboard` data to use our styling suite.
-* **Fixes**: Optimized PDF header rendering and fixed PNG encoding bugs.
-* **Better UI**: Intelligent table naming and redesigned help documentation.
----
+## Advanced features
 
-## 🎬 See It In Action
-*(Tip: Record your demo on a clean page like your custom tables.html for best results!)*
-![Easy Table Demo](your-demo-video.gif)
+- **Compare tables:** Match records by key columns, review differences and extra rows, and compare a base table with multiple targets.
+- **Join tables:** Connect tables using matching key fields and choose the columns to include.
+- **Merge tables:** Combine rows from multiple tables, optionally remove duplicates, and retain their source.
+- **Standardize fields:** Map different column names to a common structure across tables.
+- **Summarize data:** Group rows and calculate sums, counts, distinct counts, averages, minimums, and maximums; inspect the source records for each group.
+- **SQL and column tools:** Generate batch INSERT statements for MySQL, Oracle, or OceanBase in Oracle-compatible mode, and process column values and names.
 
----
+Table processing and storage are local to your browser. See the [privacy policy](https://gaoqc.github.io/easy-table-extension/privacy.html) for details.
 
-## 🔒 Privacy First (Local-First)
-We believe your data belongs to you. Easy Table operates under a strict **Zero Data Collection** policy:
-* **100% Local Processing**: All extraction and conversion happen inside your browser.
-* **No Server Uploads**: We never see, store, or transmit your table content.
-* **Secure Local Storage**: Your extraction history is saved securely in your browser's local storage.
+## Getting started
 
-[Read our full Privacy Policy here.](https://gaoqc.github.io/easy-table-extension/privacy.html)
+1. Install Easy Table from the [Chrome Web Store](https://chromewebstore.google.com/detail/table-flow-ai/flcedioalfgopopllgbheaejnpibfiam).
+2. Open a page containing a table, or import your own data.
+3. Preview and edit the table, or pin tables to Home to use the multi-table tools.
+4. Copy or export the result.
 
----
-
-## 🛠 Installation & Usage
-1.  Install the extension from the [Chrome Web Store](https://chromewebstore.google.com/detail/table-flow-ai/flcedioalfgopopllgbheaejnpibfiam).
-2.  Navigate to any page with tables.
-3.  Click the **Easy Table** icon in your toolbar.
-4.  Hover to locate, rename if needed, and export!
-
----
-
-## 💬 Feedback & Support
-Although the core logic is kept in a private repository, we use this public repo to interact with our community!
-
-* **Bugs & Requests**: Please [Open an Issue](https://github.com/gaoqc/easy-table-extension/issues).
-* **Contact**: qichenggao@gmail.com
-
----
-© 2026 Easy Table Team. Built for efficiency and privacy.
+Try the [demo page](https://gaoqc.github.io/easy-table-extension/tables.html), or [open an issue](https://github.com/gaoqc/easy-table-extension/issues) for support.

@@ -14,7 +14,7 @@
     <nav class="max-w-6xl mx-auto px-6 py-6 flex justify-between items-center">
         <div class="flex items-center gap-2 font-bold text-xl text-blue-600">
             <span class="text-2xl">
-                 <img src="./images/icon.svg" className="w-7 h-7 object-contain" />
+                 <img src="./images/icon.svg" class="w-7 h-7 object-contain" alt="Easy Table" />
             </span> Easy Table
         </div>
         <div class="space-x-6 text-sm font-medium text-slate-600">
@@ -26,11 +26,12 @@
     </nav>
 
     <header class="max-w-6xl mx-auto px-6 py-16 text-center">
+        <p class="text-blue-600 font-bold text-sm tracking-widest uppercase mb-4">Introducing Easy Table 2.0</p>
         <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-6">
-            Extract Web Tables <br><span class="text-blue-600">Smarter & Faster</span>
+            From Web Tables to <br><span class="text-blue-600">Useful Data</span>
         </h1>
         <p class="text-xl text-slate-600 mb-10 max-w-2xl mx-auto">
-            The professional browser extension to detect, preview, and export HTML tables to Excel, CSV, PDF, and Images with zero data collection.
+            Extract, edit, compare, and combine tables in your browser. Easy Table 2.0 takes you from web data to a ready-to-use result.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="https://chromewebstore.google.com/detail/table-flow-ai/flcedioalfgopopllgbheaejnpibfiam" class="bg-blue-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-blue-700 transition shadow-lg shadow-blue-200">
@@ -42,105 +43,76 @@
         </p>
     </header>
 
-    <section class="max-w-5xl mx-auto px-6 pb-20">
+    <section class="max-w-[102.4rem] mx-auto px-6 pb-20" aria-label="Easy Table 2.0 screenshots">
+        <p class="text-center text-sm text-slate-500 mb-4">Easy Table 2.0 shown with example sales data</p>
         <div class="bg-slate-100 rounded-3xl p-4 shadow-inner border border-slate-200">
             <div class="relative overflow-hidden rounded-2xl w-full shadow-2xl group">
-                <!-- Carousel Track -->
-                <div id="carousel-track" class="flex transition-transform duration-700 ease-in-out cursor-pointer">
-                    <img src="./images/main.jpg" alt="Main Interface" class="w-[90%] flex-shrink-0 object-cover pr-4">
-                    <img src="./images/preview.jpg" alt="Data Preview" class="w-[90%] flex-shrink-0 object-cover pr-4">
-                    <img src="./images/batch-download.jpg" alt="Batch Download" class="w-[90%] flex-shrink-0 object-cover pr-4">
-                    <img src="./images/import.jpg" alt="Import" class="w-[90%] flex-shrink-0 object-cover pr-4">
-                    <img src="./images/settings.jpg" alt="Settings" class="w-[90%] flex-shrink-0 object-cover pr-4">
+                <div id="carousel-track" class="flex transition-transform duration-700 ease-in-out">
+                    <div class="w-[90%] flex-shrink-0 pr-4"><img src="images/home-2.0.jpg" alt="Easy Table 2.0 home with pinned tables" class="w-full aspect-[8/5] object-contain bg-white"></div>
+                    <div class="w-[90%] flex-shrink-0 pr-4"><img src="images/export.png" alt="Compare multiple sales tables and review differences" class="w-full aspect-[8/5] object-contain bg-white"></div>
+
+                    <div class="w-[90%] flex-shrink-0 pr-4"><img src="images/copy.png" alt="Compare multiple sales tables and review differences" class="w-full aspect-[8/5] object-contain bg-white"></div>
+                    <div class="w-[90%] flex-shrink-0 pr-4"><img src="images/shotcut.jpg" alt="Compare multiple sales tables and review differences" class="w-full aspect-[8/5] object-contain bg-white"></div>
+                    <div class="w-[90%] flex-shrink-0 pr-4"><img src="images/edit.png" alt="Compare multiple sales tables and review differences" class="w-full aspect-[8/5] object-contain bg-white"></div>
+                    <div class="w-[90%] flex-shrink-0 pr-4"><img src="images/compare-2.0.jpg" alt="Compare multiple sales tables and review differences" class="w-full aspect-[8/5] object-contain bg-white"></div>
+                    <div class="w-[90%] flex-shrink-0 pr-4"><img src="images/merge-2.0.jpg" alt="Merge sales tables and preserve the source of each row" class="w-full aspect-[8/5] object-contain bg-white"></div>
+                    <div class="w-[90%] flex-shrink-0 pr-4"><img src="images/summary-2.0.jpg" alt="Summarize sales by region and total revenue" class="w-full aspect-[8/5] object-contain bg-white"></div>
                 </div>
-                
-                <!-- Navigation Buttons -->
-                <button id="prev-btn" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-slate-800 p-3 rounded-full shadow-lg backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100 focus:opacity-100" aria-label="Previous image">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-                    </svg>
-                </button>
-                <button id="next-btn" class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-slate-800 p-3 rounded-full shadow-lg backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100 focus:opacity-100" aria-label="Next image">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                    </svg>
-                </button>
+                <button id="prev-btn" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-slate-800 p-3 rounded-full shadow-lg backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100 focus:opacity-100" aria-label="Previous image"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg></button>
+                <button id="next-btn" class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-slate-800 p-3 rounded-full shadow-lg backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100 focus:opacity-100" aria-label="Next image"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg></button>
             </div>
         </div>
         <script>
             document.addEventListener('DOMContentLoaded', () => {
                 const track = document.getElementById('carousel-track');
-                const prevBtn = document.getElementById('prev-btn');
-                const nextBtn = document.getElementById('next-btn');
+                const previous = document.getElementById('prev-btn');
+                const next = document.getElementById('next-btn');
                 const count = track.children.length;
                 let index = 0;
                 let timer;
-
-                const updateCarousel = () => {
-                    // Calculate percentage based on count (each slide is 1/count of the track width)
-                    // Note: Since we use w-[85%] for slides, the track width is defined by content.
-                    // The shift needed is 100% / count
-                    track.style.transform = `translateX(-${index * (100 / count)}%)`;
-                };
-
-                const nextSlide = () => {
-                    index = (index + 1) % count;
-                    updateCarousel();
-                };
-
-                const prevSlide = () => {
-                    index = (index - 1 + count) % count;
-                    updateCarousel();
-                };
-
-                const startTimer = () => {
-                    if (timer) clearInterval(timer);
-                    timer = setInterval(nextSlide, 3000);
-                };
-
-                const resetTimer = () => {
-                    clearInterval(timer);
-                    startTimer();
-                };
-
-                // Event Listeners
-                nextBtn.addEventListener('click', () => {
-                    nextSlide();
-                    resetTimer();
-                });
-
-                prevBtn.addEventListener('click', () => {
-                    prevSlide();
-                    resetTimer();
-                });
-                
-                // Pause on hover
+                const show = () => { track.style.transform = `translateX(-${index * 90}%)`; };
+                const move = step => { index = (index + step + count) % count; show(); };
+                const start = () => { clearInterval(timer); timer = setInterval(() => move(1), 3000); };
+                previous.addEventListener('click', () => { move(-1); start(); });
+                next.addEventListener('click', () => { move(1); start(); });
                 track.addEventListener('mouseenter', () => clearInterval(timer));
-                track.addEventListener('mouseleave', startTimer);
-
-                // Start
-                startTimer();
+                track.addEventListener('mouseleave', start);
+                start();
             });
         </script>
     </section>
 
     <section id="features" class="max-w-6xl mx-auto px-6 py-20 border-t border-slate-100">
-        <div class="grid md:grid-cols-3 gap-12">
-            <div>
-                <div class="text-3xl mb-4">🎯</div>
-                <h3 class="text-xl font-bold mb-2">Smart Hover</h3>
-                <p class="text-slate-600">Instantly locate tables on any page. Hover in the list, see the highlight on the web.</p>
+        <div class="max-w-2xl mb-12">
+            <p class="text-sm font-bold uppercase tracking-widest text-blue-600 mb-3">Everyday table tools</p>
+            <h2 class="text-3xl md:text-4xl font-bold tracking-tight">Basic features</h2>
+            <p class="mt-4 text-slate-600">Find, prepare, and share table data in a few clicks.</p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div><h3 class="text-xl font-bold mb-2">Extract and import</h3><p class="text-slate-600">Detect and preview tables on web pages, or import your own CSV, Excel, and clipboard data.</p></div>
+            <div><h3 class="text-xl font-bold mb-2">Export in multiple formats</h3><p class="text-slate-600">Download tables as Excel, CSV, PDF, or PNG. Export multiple tables together when you need them.</p></div>
+            <div><h3 class="text-xl font-bold mb-2">Copy and paste</h3><p class="text-slate-600">Copy tables as plain text, Markdown, or JSON, and import supported data from the clipboard.</p></div>
+            <div><h3 class="text-xl font-bold mb-2">Edit and clean</h3><p class="text-slate-600">Edit cells, remove rows or columns, sort data, and rename columns before sharing or exporting.</p></div>
+            <div><h3 class="text-xl font-bold mb-2">Quick access</h3><p class="text-slate-600">Use the floating toolbar on a page and pin tables to Home for later use.</p></div>
+        </div>
+    </section>
+
+    <section class="bg-slate-50 border-t border-slate-100">
+        <div class="max-w-6xl mx-auto px-6 py-20">
+            <div class="max-w-2xl mb-12">
+                <p class="text-sm font-bold uppercase tracking-widest text-blue-600 mb-3">More ways to work with data</p>
+                <h2 class="text-3xl md:text-4xl font-bold tracking-tight">Advanced features</h2>
+                <p class="mt-4 text-slate-600">Compare, combine, and analyze data across tables in Easy Table 2.0.</p>
             </div>
-            <div>
-                <div class="text-3xl mb-4">🔍</div>
-                <h3 class="text-xl font-bold mb-2">Instant Preview</h3>
-                <p class="text-slate-600">Verify your data before exporting. View the first rows directly in the extension popup.</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div><h3 class="text-xl font-bold mb-2">Compare tables</h3><p class="text-slate-600">Match records by key columns, review differences and extra rows, and compare one base table with multiple targets.</p></div>
+                <div><h3 class="text-xl font-bold mb-2">Join tables</h3><p class="text-slate-600">Connect tables using matching key fields and choose which columns to include in the result.</p></div>
+                <div><h3 class="text-xl font-bold mb-2">Merge tables</h3><p class="text-slate-600">Combine rows from multiple tables, optionally remove duplicates, and retain the source of each row.</p></div>
+                <div><h3 class="text-xl font-bold mb-2">Standardize fields</h3><p class="text-slate-600">Map different column names to a common structure across tables.</p></div>
+                <div><h3 class="text-xl font-bold mb-2">Summarize data</h3><p class="text-slate-600">Group records and calculate sums, counts, averages, minimums, and maximums. Inspect the source rows behind each group.</p></div>
+                <div><h3 class="text-xl font-bold mb-2">SQL and column tools</h3><p class="text-slate-600">Generate batch INSERT statements for MySQL, Oracle, or OceanBase in Oracle-compatible mode, and process column values and names.</p></div>
             </div>
-            <div>
-                <div class="text-3xl mb-4">📤</div>
-                <h3 class="text-xl font-bold mb-2">Pro Export</h3>
-                <p class="text-slate-600">One-click export to XLSX, CSV, PDF, and high-quality Images (PNG).</p>
-            </div>
+            <p class="mt-10 text-slate-600">Table processing happens locally in your browser. <a href="privacy.html" class="text-blue-600 font-semibold hover:underline">Read the privacy policy</a>.</p>
         </div>
     </section>
 
